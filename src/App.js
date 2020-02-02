@@ -3,12 +3,12 @@ import logo from './logo.png';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState({ name: 'unknown' });
+  const [data, setData] = useState({ name: 'unknown', counter: 0 });
 
   const fetchData = async () => {
-    const response = await fetch('/api/name');
+    const response = await fetch('/api/data');
     const result = await response.json();
-    setData({name: result});
+    setData(result);
   };
 
   useEffect (() => {
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="main">
       <img src={logo} alt="" width="100" /><br />
-      Hello {data.name}
+      Hello {data.name}, you called the backend {data.counter} times.
     </div>
   );
 }
