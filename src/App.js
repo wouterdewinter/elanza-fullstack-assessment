@@ -5,12 +5,13 @@ import './App.css';
 function App() {
   const [data, setData] = useState({ name: 'unknown' });
 
+  const fetchData = async () => {
+    const response = await fetch('/api/name');
+    const result = await response.json();
+    setData({name: result});
+  };
+
   useEffect (() => {
-    const fetchData = async () => {
-      const response = await fetch('/api/name');
-      const result = await response.json();
-      setData({name: result});
-    };
     fetchData();
   }, []);
 
