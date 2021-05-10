@@ -1,12 +1,15 @@
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 const app = express();
 
-// this is the in-memory database ;)
-let counter = 0;
+const PORT = process.env.PORT || 8080;
 
-app.get('/api/data', function (req, res) {
-  counter++;
-  return res.json({name: 'sunshine', counter: counter});
-});
+// Use middleware
+app.use(cors());
+app.use(express.json());
 
-app.listen(process.env.PORT || 8080);
+// Routes
+
+// Start server on specified port
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
